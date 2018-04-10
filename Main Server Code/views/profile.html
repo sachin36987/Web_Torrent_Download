@@ -1,0 +1,95 @@
+
+
+<div class="container">
+
+<div class="modal fade" id="myModal" role="dialog">
+<!-- modal -->
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <h4 class="modal-title style="float:left;">{{headerr}}</h4>
+		  <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>{{contentt}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<style>
+.asterisk_input:after {
+content:" *"; 
+color: #e32;
+position: absolute; 
+margin: 0px 0px 0px 0px; 
+font-size: xx-large; 
+padding: 0 5px 0 0; }
+@media (min-width: 576px) { 
+.mar{
+margin-top:15px;
+}
+ }
+</style>
+
+<div class="container-fluid">
+<div class="row" style="margin-top:2%">
+<div class="col" style="max-width:500px;margin:0 auto;">
+
+<div class="alert alert-primary" role="alert">
+  
+<b>Username: </b>
+  {{username}}
+</div>
+<div class="alert alert-primary" role="alert">
+  
+<b>Email: </b>
+  {{email}}
+</div>
+
+<div class="alert alert-primary" role="alert">
+  
+<b>Change Password: </b>
+  
+  <form name="register" ng-submit="sendd()" style="margin-top:20px">
+
+
+<div class="form-group row">
+<div class="col-sm-10">
+<span class="asterisk_input"></span>
+<input type="password" class="form-control" name="password" placeholder="Enter Password" ng-model="password" ng-change="checkPass()" required >
+<small class="form-text" style="color:#f73128;">{{passReq1}}</small>
+<small class="form-text" style="color:#f73128;">{{passReq2}}</small>
+<small class="form-text" style="color:#f73128;">{{passReq3}}</small>
+<small class="form-text" style="color:#f73128;">{{passReq4}}</small>
+<small class="form-text" style="color:#f73128;">{{passReq5}}</small>
+</div>
+</div>
+
+<div class="form-group row">
+<div class="col-sm-10 mar">
+<span class="asterisk_input"></span>
+<input type="password" class="form-control" name="password1" placeholder="Confirm Password" ng-model="password1" ng-change="confirmPass()" required >
+<small class="form-text" style="color:#f73128;">{{passConf}}</small>
+</div>
+</div>
+<button class="btn btn-info btn-lg " type="submit" ng-disabled="disableBtn">Change Password</button>
+</form>
+
+
+
+</div>
+
+
+
+
+</div>
+</div>
+</div>
