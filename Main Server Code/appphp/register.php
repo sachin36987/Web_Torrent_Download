@@ -1,7 +1,12 @@
 <?php
 session_start();
 require '../conf.php';
-
+// check if registeration is allowed 
+if($enable_registration != 1){
+	// means not allowed -- redirect
+	header("Location: /");
+	exit(0);
+}
 // check logged in session variable is set .. if not then set it to 1 
 if(!isset($_SESSION['loggedin'])){
 	$_SESSION['loggedin'] = 1; // means not logged in
@@ -150,13 +155,17 @@ if(isset($detailsArray['username']) &&
 		// saving passwod as it is not good. so hash it 
 		$password = password_hash($password,PASSWORD_DEFAULT);
 		
+		// params ... e.g. initial size allowed
+		$params = mysqli_real_escape_string($conn,base64_encode(json_encode(array("size_allowed"=>$allowed_size))));
 		// save all of them in database and reply success. All have been escaped already
-		$sql = "INSERT INTO users(username,password,email) VALUES('$username','$password','$email')";
+		$sql = "INSERT INTO users(username,password,email,params,profile) VALUES('$username','$password','$email','$params','')";
+		
 		$result = $conn->query($sql);
-		$sql = "INSERT INTO userfiles (user) VALUES('$username')";
+		$sql = "INSERT INTO userfiles (user,fileIds) VALUES('$username','')";
+		
 		$newREs = $conn->query($sql);
-		if($result){
-			$rep = json_encode(array('res'=>'registered'));
+		if($result && $newREs){
+			$rep = json_encode(array('res'=>'registered'));//
 			echo $rep;
 			exit(0);
 		}

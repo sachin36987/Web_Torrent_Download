@@ -1,5 +1,0 @@
-build
-vendor
-composer.phar
-phpunit.xml
-PHP_BitTorrent-*.tgz

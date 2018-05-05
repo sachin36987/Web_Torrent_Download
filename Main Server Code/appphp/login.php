@@ -29,7 +29,7 @@ $details = json_decode(file_get_contents("php://input"),true);
 			// validate
 			$conn = new mysqli($host,$user,$pass,$db);
 			$username = mysqli_escape_string($conn,$details['username']);
-			$sql = "SELECT username,password,email FROM users where username = '".$username."'";
+			$sql = "SELECT username,password,email,params FROM users where username = '".$username."'";
 			if($result = $conn->query($sql)){
 				if($result->num_rows>0){
 				$rows = mysqli_fetch_array($result);
@@ -38,6 +38,8 @@ $details = json_decode(file_get_contents("php://input"),true);
 					$_SESSION['loggedin'] = 0;
 					$_SESSION['username'] = $username;
 					$_SESSION['email'] = $rows['email'];
+                             $paramss = json_decode(base64_decode($rows['params']));
+          $_SESSION['size_allowed'] = $paramss->size_allowed;
 					echo $rep;
 					exit(0);
 				}

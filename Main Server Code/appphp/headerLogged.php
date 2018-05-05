@@ -96,7 +96,7 @@ a:hover {
 	  </ul>
       <!-- alert auto fade -->
 <div id="success-alert" style="float:right;position:fixed">
-<div class="alert alert-success overlay" >
+<div class="alert {{color_class}} overlay" >
     <button type="button" class="close" data-dismiss="alert">x</button>
     <strong>{{headAlert}} </strong>
     {{ContentAlert}}
